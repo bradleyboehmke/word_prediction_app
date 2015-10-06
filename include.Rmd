@@ -1,0 +1,16 @@
+---
+title: "include.Rmd"
+author: "Brad Boehmke"
+date: "December 14, 2014"
+output: html_document
+---
+
+This is a Shiny application that accepts an n-gram as input and predicts the next word.  Please be patient while the app initializes; this takes roughly 5 seconds.
+        
+The following steps can be followed to use this app:
+        
+1. In the left-hand sidebar panel, insert the partial sentence you would like us to analyze
+2. On tab 2 (*Word Prediction*), we will provide you the top six words that have the highest probability to be the next word in your sentence.
+3. On tab 3 (*Word Cloud*), we provide you with a little analytic artwork that displays the top 50 words most likely to follow your partial sentence input.
+
+**Note:** For more information on the prediction algorithm used in this app please reference the word prediction [presentation](http://rpubs.com/bradleyboehmke/word_prediction)
