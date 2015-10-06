@@ -65,12 +65,16 @@ img {
 </div>
 
 
-<p>This is one of my first forays into the world of word prediction. The purpose of this project was to build a Shiny app to predict the next word for a given n-gram.</p>
+<p>This is one of my first forays into the world of word prediction. The purpose of this project was to build a Shiny app to predict the next word for a given n-gram. You can find the finished app <a href>here</a>.</p>
 <div id="data" class="section level1">
 <h1>Data</h1>
 <p>For this project I used publicly available social media <a href="http://www.corpora.heliohost.org/index.html">data</a>. The data contains over 4 million lines of text and over 100 million words. I sampled approximately 50% of the initial data, removed all non-alphabetic (numbers, punctuation, special characters) characters and converted to lowercase to elminate case sensitivity. In addition, I removed profanity <a href="https://github.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/blob/master/en">words</a>.</p>
 <p>Once the data was cleaned, I primarily used the <code>tm</code> and <code>RWeka</code> libraries to perform the text analysis which consisted of extracting sequences and frequencies of words (2-, 3-, 4-, &amp; 5-grams).</p>
-<p>Th</p>
+<p>The data cleansing and and n-gram analysis can be found in the <code>extracting_n-grams.R</code> file located <a href="https://github.com/bradleyboehmke/word_prediction_app">here</a>.</p>
+</div>
+<div id="prediction-algorithm" class="section level1">
+<h1>Prediction Algorithm</h1>
+<p>For the prediction algorithm used to predict the most likely word to follow the given n-gram I applied a <a href="http://en.wikipedia.org/wiki/Katz%27s_back-off_model">Simple Backoff Algorithm</a>. In a Simple Backoff model the user provides character sequence (n-gram) which is passed to the algorithm. The user input is then preprocessed in a similar manner as the training data (non-alphabetic characters/expressions removed, forces to lowercase, profanity filtered, etc.). If th user input sequence contains more than four words only the final four words are selected. The algorithm then identifies the length of user input and searches for an n-gram that matches. If match is found, model selects highest probable word that follows. If no matching n-gram exists, the algorithm “backs-off” by reducing the user input to <span class="math">\(n-1\)</span> gram and searches for matching n-gram. If no match still exists after backing off to smallest n-gram possible, algorithm searches for partial n-gram matches (ie: “building xxx prediction app” and/or “building word xxx app”). If no partial matches exist, algorithm predicts most common single words found in data.</p>
 </div>
 
 
