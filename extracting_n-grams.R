@@ -3,7 +3,7 @@ library(SnowballC) # provides wordStem() for stemming
 library(RColorBrewer) # generate palette of colours for plots
 library(ggplot2) # plot word frequencies
 library(scales) # format axis scales for plots
-library(Rgraphviz) # provides term correlation plots
+#library(Rgraphviz) # provides term correlation plots
 library(tidyr) # assists in cleaning & preparing data
 library(dplyr) # assists in data manipulation, transformation, & summarization
 library(RWeka)
@@ -12,9 +12,9 @@ library(stringr)
 ####################
 # Process Sample 1 #
 ####################
-blog1 <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample1/blog1.csv", stringsAsFactors=FALSE)
-news1 <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample1/news1.csv", stringsAsFactors=FALSE)
-twitter1 <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample1/twitter1.csv", stringsAsFactors=FALSE)
+blog1 <- read.csv("Sample1/blog1.csv", stringsAsFactors=FALSE)
+news1 <- read.csv("Sample1/news1.csv", stringsAsFactors=FALSE)
+twitter1 <- read.csv("Sample1/twitter1.csv", stringsAsFactors=FALSE)
 sample.ls <- list(Blog = blog1, News = news1, Twitter = twitter1)
 
 ## Pre-processing the Corpus
@@ -33,7 +33,7 @@ sample.ls <- lapply(sample.ls, function(x) str_trim(x, side = "both"))
 sample <- Corpus(VectorSource(sample.ls))
 
 # profanity filter
-profanity <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/en", header=FALSE, stringsAsFactors=FALSE)
+profanity <- read.csv("List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/en", header=FALSE, stringsAsFactors=FALSE)
 profanity <- profanity$V1
 sample <- tm_map(sample, removeWords, profanity)
 
@@ -133,9 +133,9 @@ rm(tdm, matrix.tdm, df.tdm)
 ####################
 # Process Sample 2 #
 ####################
-blog <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample2/blog2.csv", stringsAsFactors=FALSE)
-news <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample2/news2.csv", stringsAsFactors=FALSE)
-twitter <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample2/twitter2.csv", stringsAsFactors=FALSE)
+blog <- read.csv("Sample2/blog2.csv", stringsAsFactors=FALSE)
+news <- read.csv("Sample2/news2.csv", stringsAsFactors=FALSE)
+twitter <- read.csv("Sample2/twitter2.csv", stringsAsFactors=FALSE)
 sample.ls <- list(Blog = blog, News = news, Twitter = twitter)
 
 ## Pre-processing the Corpus
@@ -258,9 +258,9 @@ rm(tdm, matrix.tdm, df.tdm, quin.gram.alt, sample)
 ####################
 # Process Sample 3 #
 ####################
-blog <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample3/blog3.csv", stringsAsFactors=FALSE)
-news <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample3/news3.csv", stringsAsFactors=FALSE)
-twitter <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample3/twitter3.csv", stringsAsFactors=FALSE)
+blog <- read.csv("Sample3/blog3.csv", stringsAsFactors=FALSE)
+news <- read.csv("Sample3/news3.csv", stringsAsFactors=FALSE)
+twitter <- read.csv("Sample3/twitter3.csv", stringsAsFactors=FALSE)
 sample.ls <- list(Blog = blog, News = news, Twitter = twitter)
 
 ## Pre-processing the Corpus
@@ -383,9 +383,9 @@ rm(tdm, matrix.tdm, df.tdm, quin.gram.alt, sample)
 ####################
 # Process Sample 4 #
 ####################
-blog <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample4/blog4.csv", stringsAsFactors=FALSE)
-news <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample4/news4.csv", stringsAsFactors=FALSE)
-twitter <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample4/twitter4.csv", stringsAsFactors=FALSE)
+blog <- read.csv("Sample4/blog4.csv", stringsAsFactors=FALSE)
+news <- read.csv("Sample4/news4.csv", stringsAsFactors=FALSE)
+twitter <- read.csv("Sample4/twitter4.csv", stringsAsFactors=FALSE)
 sample.ls <- list(Blog = blog, News = news, Twitter = twitter)
 
 ## Pre-processing the Corpus
@@ -508,9 +508,9 @@ rm(tdm, matrix.tdm, df.tdm, quin.gram.alt, sample)
 ####################
 # Process Sample 5 #
 ####################
-blog <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample5/blog5.csv", stringsAsFactors=FALSE)
-news <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample5/news5.csv", stringsAsFactors=FALSE)
-twitter <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/Quiz_2_Sample5/twitter5.csv", stringsAsFactors=FALSE)
+blog <- read.csv("Sample5/blog5.csv", stringsAsFactors=FALSE)
+news <- read.csv("Sample5/news5.csv", stringsAsFactors=FALSE)
+twitter <- read.csv("Sample5/twitter5.csv", stringsAsFactors=FALSE)
 sample.ls <- list(Blog = blog, News = news, Twitter = twitter)
 
 ## Pre-processing the Corpus
@@ -684,7 +684,7 @@ final.df <- rbind(bi.gram, tri.gram, quad.gram, quin.gram) #has 4M unique tokens
 test <- final.df %>% filter(total > 2)
 
 
-final.df <- read.csv("~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/final.df.csv", stringsAsFactors=FALSE)
+final.df <- read.csv("final.df.csv", stringsAsFactors=FALSE)
 
 test <- final.df %>%
         group_by(count) %>%
@@ -696,7 +696,7 @@ test <- final.df %>%
 
 saveRDS(test, "final.rds")
 
-write.csv(test, file = "~/Desktop/Personal/Education & Training/Coursera/Capstone/Capstone/app-1/final.df.csv", row.names = FALSE)
+write.csv(test, file = "final.df.csv", row.names = FALSE)
 
 top.unigram <- final.df %>% 
         group_by(predict) %>% 
